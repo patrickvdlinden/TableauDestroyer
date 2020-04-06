@@ -1,0 +1,93 @@
+<!DODCTYPE html>
+<html>
+<head>
+	<title>Tableau Destroyer - How fast can you destroy the Tableau?</title>
+	<style>
+		html, body {
+			font-family: "Comic Sans";
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+		}
+		#game-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+
+		#intro-text {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 25px;
+			border: 1px solid #ffffff;
+			background-color: rgba(0, 0, 0, 0.9);
+			color: #ffffff;
+			font-family: Comic Sans MS;
+			text-align: center;
+		}
+
+		#close-intro-text-button,
+		#open-intro-button {
+			background: transparent;
+			border: 1px solid #ffffff;
+			color: #ffffff;
+			padding: 25px;
+			cursor: pointer;
+			font-family: Comic Sans MS;
+		}
+
+		#open-intro-button {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
+	</style>
+	<script src="script/game.js"></script>
+	<script type="text/javascript">
+		window.addEventListener("load", function() {
+			var introText = document.getElementById("intro-text");
+			var introRead = parseInt(window.localStorage.getItem("introRead") || "0");
+			if (introRead) {
+				introText.style.display = "none";
+			}
+
+			var gameContainer = document.getElementById("game-container");
+			var game = new TableauDestroyer.Game(gameContainer);
+			game.initialize();
+
+			var closeButton = document.getElementById("close-intro-text-button");
+			closeButton.addEventListener("click", function() {
+				introText.style.display = "none";
+				window.localStorage.setItem("introRead", 1);
+			});
+
+			var openIntroButton = document.getElementById("open-intro-button");
+			openIntroButton.addEventListener("click", function() {
+				introText.style.display = "block";
+			})
+		});
+	</script>
+</head>
+<body>
+</body>
+<div id="game-container">
+	<button id="open-intro-button">Help</button>
+</div>
+<div id="intro-text">
+	<p>
+		Welcome to Tableau Destroyer! In this game you need to click away colored tiles as fast as possible.<br/>
+		But beware! The black tiles will cause your game to end, so try to avoid those at all cost!<br/>
+		The white tiles are 'empty'. Clicking these will remove 1 point from your score.<br/>
+		Whenever you've clicked a colored tile, it becomes purple and should not be clicked again, or you'll lose the gained points again!<br/>
+		Good luck and send me your hiscores!
+	</p>
+	<p>
+		<button id="close-intro-text-button">Let's play!</button>
+	</p>
+</div>
+</html>

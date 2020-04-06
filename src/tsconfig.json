@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "outFile": "../script/game.js"
+    },
+    "include": [
+        "**/*.ts"
+    ]
+} 
